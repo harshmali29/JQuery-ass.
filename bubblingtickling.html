@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling and Delegation Example</title>
+    <style>
+        #container {
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .clickable {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div class="clickable" id="parent">
+        Parent Element
+        <div class="clickable" id="child">
+            Child Element
+        </div>
+    </div>
+</div>
+
+<script>
+    // Event bubbling example
+    document.getElementById('container').addEventListener('click', function (event) {
+        console.log('Event Bubbled Up:', event.target.textContent);
+    });
+
+    // Event delegation example
+    document.getElementById('container').addEventListener('click', function (event) {
+        if (event.target.classList.contains('clickable')) {
+            console.log('Event Delegated:', event.target.textContent);
+        }
+    });
+</script>
+
+</body>
+</html>
